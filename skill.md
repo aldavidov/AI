@@ -1,11 +1,41 @@
----
-name: friendly-greeter
-description: Generates a casual, upbeat greeting and a fun fact. Use when the user says hello, hi, or good morning.
----
-
-# Friendly Greeter Instructions
-
-When this skill is invoked:
-1. Respond with an enthusiastic greeting tailored to the time of day.
-2. Share one short, family-friendly fun fact.
-3. Keep the entire response under three sentences.
+{
+  "$schema": "https://schemas.botframework.com/schemas/skills/v2.1/skill-manifest.json",
+  "$id": "SampleEchoSkill",
+  "name": "Echo Skill",
+  "version": "1.0.0",
+  "description": "A skill that echoes back whatever the user says, useful for testing Copilot connectivity.",
+  "publisherName": "Contoso Dev Team",
+  "msaAppId": "00000000-0000-0000-0000-000000000000",
+  "endpoint": "https://azurewebsites.net",
+  "activities": {
+    "message": {
+      "type": "message",
+      "description": "Receives text from the user and replies with an exact echo."
+    }
+  },
+  "definitions": {
+    "echoUtterances": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The message text to echo back."
+        }
+      }
+    }
+  },
+  "dispatchModels": {
+    "intents": [
+      {
+        "id": "EchoIntent",
+        "description": "Triggers when the user asks to repeat, echo, or mimic text.",
+        "utterances": [
+          "echo this please",
+          "repeat after me",
+          "say hello world",
+          "test the connection"
+        ]
+      }
+    ]
+  }
+}
